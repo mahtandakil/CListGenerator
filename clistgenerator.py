@@ -2,7 +2,7 @@
 # Created for: SDLApi v1
 # Dev line: SDLApi v1
 # Creation day: 05/08/2015
-# Last change: 17/08/2015
+# Last change: 19/08/2015
 #
 # Reserved names: id, tag, pointer, available, element, index, data
 #***************************************************************************/
@@ -17,7 +17,7 @@ import time
 class generator:
 	
 	def __init__(self):
-		self.version = "1.0.4"
+		self.version = "1.0.5"
 		self.datos = []
 		self.variables = []
 
