@@ -2,9 +2,9 @@
 # Created for: SDLApi v1
 # Dev line: SDLApi v1
 # Creation day: 05/08/2015
-# Last change: 19/08/2015
+# Last change: 24/08/2015
 #
-# Reserved names: id, tag, pointer, available, element, index, data
+# Reserved words: id, tag, pointer, available, element, index, data
 #***************************************************************************/
 
 
@@ -17,7 +17,7 @@ import time
 class generator:
 	
 	def __init__(self):
-		self.version = "1.0.5"
+		self.version = "1.0.7"
 		self.datos = []
 		self.variables = []
 
@@ -80,6 +80,7 @@ class generator:
 		f.write("		virtual ~" + self.datos[2] + "Index();\n");
 		f.write("\n");
 		f.write("		int createRegister(string tag);\n");
+		f.write("		int freeList();\n");
 		
 		for x in self.variables:
 			f.write("		" + x[0] + " get" + x[1].capitalize() + "(int id);\n");
@@ -192,6 +193,35 @@ class generator:
 		f.write("}\n")
 		f.write("\n")
 		f.write("\n")
+
+
+		f.write("//---------------------------------------------------------------------------\n\n")	
+		f.write("int " + self.datos[2] + "Index::freeList(){\n\n")		
+		f.write("	" + self.datos[2] + "Element* pointer;\n")
+		f.write("	" + self.datos[2] + "Element* next;\n")
+		f.write("	int result= 0;\n")
+		f.write("\n")
+		f.write("    if(this->first != nullptr){\n")
+		f.write("\n")
+		f.write("        pointer = this->first;\n")
+		f.write("\n")
+		f.write("        while(pointer != nullptr){\n")
+		f.write("\n")
+		f.write("            next = pointer->getNext();\n")
+		f.write("            counter++;\n")
+		f.write("            delete pointer;\n")
+		f.write("            pointer = next;\n")
+		f.write("\n")
+		f.write("        }\n")
+		f.write("\n")
+		f.write("    }\n")
+		f.write("\n")
+		f.write("    return result;\n")
+		f.write("\n")
+		f.write("}\n")
+		f.write("\n")
+		f.write("\n")
+		
 
 		for x in self.variables:
 			f.write("//---------------------------------------------------------------------------\n")	
