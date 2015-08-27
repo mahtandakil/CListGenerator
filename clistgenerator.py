@@ -2,7 +2,7 @@
 # Created for: SDLApi v1
 # Dev line: SDLApi v1
 # Creation day: 05/08/2015
-# Last change: 24/08/2015
+# Last change: 27/08/2015
 #
 # Reserved words: id, tag, pointer, available, element, index, data
 #***************************************************************************/
@@ -17,7 +17,7 @@ import time
 class generator:
 	
 	def __init__(self):
-		self.version = "1.0.7"
+		self.version = "1.0.8"
 		self.datos = []
 		self.variables = []
 
@@ -160,9 +160,9 @@ class generator:
 		f.write("}\n")
 		f.write("\n")
 		f.write(self.datos[2] + "Index::~" + self.datos[2] + "Index()\n")
-		f.write("{\n")
-		f.write("	//dtor\n")
-		f.write("}\n")
+		f.write("{\n\n")
+		f.write("	this->freeList();\n")
+		f.write("\n}\n")
 		f.write("\n")
 		f.write("\n")
 		
