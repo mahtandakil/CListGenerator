@@ -2,7 +2,7 @@
 # Created for: SDLApi v1
 # Dev line: SDLApi v1
 # Creation day: 05/08/2015
-# Last change: 27/08/2015
+# Last change: 16/10/2015
 #
 # Reserved words: id, tag, pointer, available, element, index, data
 #***************************************************************************/
@@ -17,7 +17,7 @@ import time
 class generator:
 	
 	def __init__(self):
-		self.version = "1.0.8"
+		self.version = "1.0.9"
 		self.datos = []
 		self.variables = []
 
@@ -565,6 +565,9 @@ class generator:
 				
 		elif var == "bool":
 			result = "false;\n"
+		
+		elif var == "double":
+			result = "0.0;\n"
 		
 		elif var == "Uint8":
 			result = "0;\n"

@@ -1,11 +1,8 @@
-AGE
-AGE v1
-AGEAnimation
-AGEAnimationFrameIndex* frames
-string file
-string description
-int bgcolor1
-int bgcolor2
-int bgcolor3
-int images
-int init
+STRG
+STRG v1
+StoragesF
+string name
+string type
+string s_value
+int i_value
+double d_value
