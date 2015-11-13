@@ -2,7 +2,7 @@
 # Created for: SDLApi v1
 # Dev line: SDLApi v1
 # Creation day: 05/08/2015
-# Last change: 16/10/2015
+# Last change: 13/11/2015
 #
 # Reserved words: id, tag, pointer, available, element, index, data
 #***************************************************************************/
@@ -17,7 +17,7 @@ import time
 class generator:
 	
 	def __init__(self):
-		self.version = "1.0.9"
+		self.version = "1.0.10"
 		self.datos = []
 		self.variables = []
 
@@ -208,7 +208,7 @@ class generator:
 		f.write("        while(pointer != nullptr){\n")
 		f.write("\n")
 		f.write("            next = pointer->getNext();\n")
-		f.write("            counter++;\n")
+		f.write("            result++;\n")
 		f.write("            delete pointer;\n")
 		f.write("            pointer = next;\n")
 		f.write("\n")
