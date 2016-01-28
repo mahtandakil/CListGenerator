@@ -1,0 +1,5 @@
+ARG="string,string_var"
+ARG="int,int_var"
+ARG="dobule,double_var"
+ARG="int,low_chars"
+ARG="int,CAP_CHARS"

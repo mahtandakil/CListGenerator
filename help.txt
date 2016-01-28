@@ -1,0 +1,45 @@
+FILES:
+
+.cls - File containing the solution definition values
+.cld - File containing the object definition values
+.clc - Unprocessed code for every object
+
+
+
+BASE COMMANDS:
+
+<[PROJECT]> - the project name
+<[DEVLINE]> - the dev line value
+<[CREATIONDATE]> - the day that the file was created
+<[TODAY]> - the timestamp of the generation day
+<[VERSION]> - the generator's version
+<[BASENAME]> - the object's name
+<[FULLLIST_ARGS]> - a list with all the variables and it's types
+
+
+
+ARGUMENT LOOP COMMANDS:
+
+<<<FOR_ARGS>>> - for open the loop
+<<</FOR_ARGS>>> - for close the loop
+<[ARG_TYPE]> - the variable type
+<[ARG_NAME]> - the variable name
+<[ARG_DEF]> - the variable type and name
+
+
+
+MODIFIERS
+
+{capital} - all the characters are capital
+{first} - the first character is capital, all the others are low
+{low} - all the characters are low
+{except:XXX} - this modifier only works with the <[FULLLIST_ARGS]> command. You can specify a variable name to prevent it to appear in the list. Multiple exceptions requieres multiple excepcion modifiers.
+
+
+RESERVED VARIABLES - this variables are used inside of the list code and should not be used in the generator. The templates can be modified, so if you use the generator for other purpoueses this resctriction could be avoided.
+
+string tag
+int id
+bool available
+int count
+
