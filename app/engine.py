@@ -4,7 +4,7 @@
 # Created for: AGE v2
 # Dev line: AGE v2
 # Creation day: 11/01/2016
-# Last change: 28/01/2016
+# Last change: 05/02/2016
 #***************************************************************************/
 
 
@@ -40,10 +40,13 @@ class Engine():
 		self.cld_values = None
 		self.cld_base_name = ""
 		self.checks = [["", ".h", "template_h.clc"], ["", ".cpp", "template_cpp.clc"], ["Index", ".h", "template_index_h.clc"], ["Index", ".cpp", "template_index_cpp.clc"]]
-		self.FORARGSOPEN = "<<<FOR_ARGS>>>\n"
-		self.FORARGSCLOSE = "<<</FOR_ARGS>>>\n"
+		self.FORARGSOPEN = "<<<FOR_ARGS"
+		self.FORARGSCLOSE = "<<</FOR_ARGS"
+		self.FORARGSBASEOPEN = "<<<FOR_BASE&ARGS"
+		self.FORARGSBASECLOSE = "<<</FOR_BASE&ARGS"
 		self.ER_ARG1 = ""
 		self.ER_ARG2 = ""
+		self.base_values = [["ARG", "int", "ident"],["ARG", "string", "tag"],["ARG", "bool", "available"],["SPECIAL", "POINTER", "next"]]
 		
 		self.engine_version = "1.1.0"
 		
@@ -70,7 +73,6 @@ class Engine():
 	#This is the main function for the CLD files.
 	def processCLD(self, file_path, values):
 		
-		clear()
 		print file_path
 		
 		self.cld_base_name = os.path.basename(file_path)[:os.path.basename(file_path).find(".")]
@@ -91,6 +93,7 @@ class Engine():
 		self.searchFiles(self.cls_values["SOURCE"])
 		
 		#The generator processes every CLC file one by one.
+		clear()
 		for file_name in self.file_list:
 			self.processCLD(file_name, self.cls_values)	
 
@@ -212,10 +215,10 @@ class Engine():
 				if token_init > -1 and token_init > -1:
 					
 					comm = line[token_init:token_end+1]
-					base = line[line.find("[")+1:line.find("]")]
+					base = line[line.find("[", token_init)+1:line.find("]", token_init)]
 					mod = self.searchMods(line)
 					tokens.append([count, comm, base, mod])
-
+					
 		return tokens
 		
 						
@@ -237,20 +240,30 @@ class Engine():
 			
 			count+=1
 			
-			if line.find("<<<FOR_ARGS>>>") > -1:
+			if line.find(self.FORARGSOPEN) > -1:
 				level+=1
-				tokens.append(["forargs_open", count, level])
+				mod = self.searchMods(line)
+				tokens.append(["forargs_open", count, level, mod])
 
-			elif line.find("<<</FOR_ARGS>>>") > -1:
-				tokens.append(["forargs_close", count, level])
+			elif line.find(self.FORARGSCLOSE) > -1:
+				tokens.append(["forargs_close", count, level, []])
+				level-=1
+			
+			elif line.find(self.FORARGSBASEOPEN) > -1:
+				level+=1
+				mod = self.searchMods(line)
+				tokens.append(["forargsbase_open", count, level, mod])
+
+			elif line.find(self.FORARGSBASECLOSE) > -1:
+				tokens.append(["forargsbase_close", count, level, []])
 				level-=1
 			
 		for token in tokens:
 			
-			if token[0] == "forargs_open":
+			if token[0] == "forargs_open" or token[0] == "forargsbase_open":
 				count_problems += 1
 		
-			if token[0] == "forargs_open":
+			if token[0] == "forargs_close" or token[0] == "forargsbase_close":
 				count_problems -= 1
 
 			if count_problems < 0:
@@ -261,9 +274,9 @@ class Engine():
 
 		if problems:
 			result.append("PROBLEMS")
-
+		
 		tokens = self.setHierarchy(tokens)
-
+		
 		return tokens
 		
 
@@ -286,9 +299,17 @@ class Engine():
 			if token[0] == "forargs_open":
 				level+=1
 				ident+=1
-				hierarchy.append([ident, level, token[1], -1])
+				hierarchy.append([ident, level, token[1], -1, "forargs", token[3]])
 		
 			elif token[0] == "forargs_close":
+				level-=1
+
+			elif token[0] == "forargsbase_open":
+				level+=1
+				ident+=1
+				hierarchy.append([ident, level, token[1], -1, "forargsbase", token[3]])
+		
+			elif token[0] == "forargsbase_close":
 				level-=1
 		
 		for count in range(0, len(hierarchy)):
@@ -301,6 +322,13 @@ class Engine():
 					found = True
 					
 				if found == True and tokens[search][0] == "forargs_close" and tokens[search][2] == hierarchy[count][1]:
+					found = False
+					hierarchy[count][3] = tokens[search][1]
+
+				if hierarchy[count][2] == tokens[search][1] and tokens[search][0] == "forargsbase_open":
+					found = True
+					
+				if found == True and tokens[search][0] == "forargsbase_close" and tokens[search][2] == hierarchy[count][1]:
 					found = False
 					hierarchy[count][3] = tokens[search][1]
 				
@@ -355,30 +383,48 @@ class Engine():
 	
 	def processArgsCommands(self, code, tokens):
 		
+		
 		new_code = []
 		
 		for token in tokens:
+			
+			ignores = self.searchIgnores(token[5])
+			
+			comm_values = self.cld_values
+			if token[4] == "forargsbase":
+				comm_values = self.base_values + self.cld_values
+				
+			for arg in comm_values:
+				
+				if arg[0] == "SPECIAL":
+					
+					if arg[1] == "POINTER":
+						
+						arg[0] = "ARG"
+						arg[1] = self.cld_base_name + "*"						
 
 			lines = code[token[2]:token[3]-1]
-				
-			for line in lines:
-				
-				new_lines = []
-				for arg in self.cld_values:
-					
-					if arg[0] == "ARG":
-
-						new_line = line
-						modified = True
+			new_lines = []
+			
+			for arg in comm_values:
+	
+				if ignores.count(arg[2]) == 0:
+	
+					for line in lines:
 						
-						while modified:
-							result = self.applyCommand(new_line, arg)
-							modified = result[0]
-							new_line = result[1]
+						if arg[0] == "ARG":
+							
+							new_line = line
+							modified = True
+							
+							while modified:
+								result = self.applyCommand(new_line, arg)
+								modified = result[0]
+								new_line = result[1]
 
-						new_lines.append(new_line)
-				
-				new_code.append(new_lines)
+							new_lines.append(new_line)				
+					
+			new_code.append(new_lines)
 
 		count = 0
 		diff = 0
@@ -388,7 +434,7 @@ class Engine():
 			code[token[2]-1+diff:token[3]+diff] = new_code[count]
 			diff = len(code) - init_len
 			count+=1
-
+		
 		return code
 
 		
@@ -406,7 +452,7 @@ class Engine():
 		
 		comm_start = line.find("<[ARG_NAME]")
 		if comm_start > -1 and changed == False:
-			comm_end = line.find(">", comm_start-1)
+			comm_end = line.find(">", comm_start)
 			comm = line[comm_start:comm_end+1]
 			mod = self.searchMods(comm)
 			com_res = self.applyMods(arg[2], mod)
@@ -415,7 +461,7 @@ class Engine():
 		if comm_start == -1:
 			comm_start = line.find("<[ARG_TYPE]")
 		if comm_start > -1 and changed == False:
-			comm_end = line.find(">", comm_start-1)
+			comm_end = line.find(">", comm_start)
 			comm = line[comm_start:comm_end+1]
 			mod = self.searchMods(comm)
 			com_res = arg[1]
@@ -424,10 +470,28 @@ class Engine():
 		if comm_start == -1:
 			comm_start = line.find("<[ARG_DEF]")
 		if comm_start > -1 and changed == False:
-			comm_end = line.find(">", comm_start-1)
+			comm_end = line.find(">", comm_start)
 			comm = line[comm_start:comm_end+1]
 			mod = self.searchMods(comm)
-			com_res = arg[1] + " " + sel.applyMods(arg[2], mod)
+			com_res = arg[1] + " " + self.applyMods(arg[2], mod)
+			changed = True
+
+		if comm_start == -1:
+			comm_start = line.find("<[ARG_INIT]")
+		if comm_start > -1 and changed == False:
+			comm_end = line.find(">", comm_start)
+			comm = line[comm_start:comm_end+1]
+			mod = self.searchMods(comm)
+			if arg[1] == "bool":
+				com_res = "false"
+			elif arg[1] == "int":
+				com_res = "-1"
+			elif arg[1] == "double":
+				com_res = "-1.0"
+			elif arg[1] == "string":
+				com_res = "\"\""
+			else:
+				com_res = "nullptr"
 			changed = True
 
 		if not comm == None:
@@ -459,6 +523,25 @@ class Engine():
 
 #-----------------------------------------------------------------------
 
+	#This function looks for ingnore modifiers inside a loop.
+	def searchIgnores(self, comm):
+
+		ignores = []
+		ign_init = 0
+		ing_end = 0
+		
+		for mod in comm:
+
+			ign_init = mod.find("ignore:")
+
+			if ign_init > -1:
+				ignores.append(mod[ign_init+len("ignore:"):])
+		
+		return ignores
+		
+
+#-----------------------------------------------------------------------
+
 	#This functions applies the modifications
 	def applyMods(self, value, mods):
 		
@@ -481,7 +564,7 @@ class Engine():
 	#This function is used to save all the generated code
 	def saveFile(self, path, code):
 		
-		f = open(path, "w+")
+		f = open(path, "w")
 		
 		if not code == None:
 			for line in code:

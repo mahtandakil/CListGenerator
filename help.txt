@@ -8,38 +8,43 @@ FILES:
 
 BASE COMMANDS:
 
-<[PROJECT]> - the project name
-<[DEVLINE]> - the dev line value
+<[BASENAME]> - the object's name
 <[CREATIONDATE]> - the day that the file was created
+<[DEVLINE]> - the dev line value
+<[FULLLIST_ARGS]> - a list with all the variables and it's types
+<[PROJECT]> - the project name
 <[TODAY]> - the timestamp of the generation day
 <[VERSION]> - the generator's version
-<[BASENAME]> - the object's name
-<[FULLLIST_ARGS]> - a list with all the variables and it's types
 
 
 
 ARGUMENT LOOP COMMANDS:
 
-<<<FOR_ARGS>>> - for open the loop
-<<</FOR_ARGS>>> - for close the loop
-<[ARG_TYPE]> - the variable type
-<[ARG_NAME]> - the variable name
+<<<FOR_ARGS>>> - this command opens the loop
+<<</FOR_ARGS>>> - this command closes the loop
+<<<FOR_BASE&ARGS>>> - this command opens an arg loop that includes the internal list variables
+<<</FOR_BASE&ARGS>>> - this command closes the previous loop
 <[ARG_DEF]> - the variable type and name
+<[ARG_NAME]> - the variable name
+<[ARG_INIT]> - the default value fot the variable type. If the type is not supported, the default value will be nullptr.
+<[ARG_TYPE]> - the variable type
 
 
 
 MODIFIERS
 
 {capital} - all the characters are capital
+{except:XXX} - this modifier only works with the <[FULLLIST_ARGS]> command. You can specify a variable name to prevent it to appear in the list. Multiple exceptions requieres multiple excepcion modifiers.
+{ignore:XXX} - this modifier only works with argument loops open commands. The specified variable will be ignored in this loop.
 {first} - the first character is capital, all the others are low
 {low} - all the characters are low
-{except:XXX} - this modifier only works with the <[FULLLIST_ARGS]> command. You can specify a variable name to prevent it to appear in the list. Multiple exceptions requieres multiple excepcion modifiers.
 
 
-RESERVED VARIABLES - this variables are used inside of the list code and should not be used in the generator. The templates can be modified, so if you use the generator for other purpoueses this resctriction could be avoided.
+RESERVED NAMES - this variables and names are used inside of the list code and should not be used in the generator. The templates can be modified, so if you use the generator for other purpoueses this resctriction could be avoided.
 
+int ident
 string tag
-int id
 bool available
 int count
+--- node
 

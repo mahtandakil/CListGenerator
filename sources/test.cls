@@ -1,0 +1,5 @@
+SOURCE="../clg_test"
+DESTINY="../clg_test"
+PROJECT="Test CListGenerator v1.1.0"
+DEVLINE="V2 LINE"
+CREATIONDATE="29/01/2016"

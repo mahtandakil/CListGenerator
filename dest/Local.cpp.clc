@@ -27,22 +27,6 @@
 }
 
 
-//---------------------------------------------------------------------------
-
-int <[BASENAME]>::printNode(){
-
-	cout << "ID: " << this->ident << endl;
-	cout << "POINTER: " << this << endl;
-	<<<FOR_BASE&ARGS{ignore:ident}>>>
-	cout << "<[ARG_NAME]{capital}>: " << this-><[ARG_NAME]> << endl;
-	<<</FOR_BASE&ARGS>>>
-	cout << endl;
-	
-	return this->ident;
-	
-}
-
-
 <<<FOR_BASE&ARGS>>>
 //---------------------------------------------------------------------------
 
@@ -50,7 +34,7 @@ int <[BASENAME]>::set<[ARG_NAME]{first}>(<[ARG_DEF]>){
 
 	this-><[ARG_NAME]> = <[ARG_NAME]>;
 	
-	return this->ident;
+	return this->id;
 
 }
 

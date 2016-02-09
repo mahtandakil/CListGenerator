@@ -8,7 +8,6 @@
 
 
 #include <iostream>
-#include <string>
 
 
 using namespace std;
@@ -24,7 +23,6 @@ class <[BASENAME]>
 		<[BASENAME]>();
 		virtual ~<[BASENAME]>();
 
-		int printNode();
 		<<<FOR_BASE&ARGS>>>
 		<[ARG_TYPE]> get<[ARG_NAME]{first}>();
 		<<</FOR_BASE&ARGS>>>

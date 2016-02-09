@@ -11,7 +11,6 @@
 
 
 #include <iostream>
-#include <string>
 
 
 using namespace std;
@@ -27,22 +26,18 @@ class <[BASENAME]>Index
 		<[BASENAME]>Index();
 		virtual ~<[BASENAME]>Index();
 
-		int createNode(string tag="");
-		int freeNode(int ident);
+		int createRegister(string tag="");
+		int searchAvailable();
+		int freeNode(int id);
 		int freeList();
-		int deleteNode(int ident);
+		int deleteNode(int id);
 		int deleteList();
-		int setValues(int ident, <[FULLLIST_ARGS]>);
 		int purge();
-		<[BASENAME]>* getNode(int id);
-		int getPrevious(int ident);
-		int printNodes();
-		int searchAvailable(int limit=0);
 		<<<FOR_BASE&ARGS>>>
 		<[ARG_TYPE]> get<[ARG_NAME]{first}>(int id);
 		<<</FOR_BASE&ARGS>>>
-		<<<FOR_BASE&ARGS{ignore:ident}>>>
-		int set<[ARG_NAME]{first}>(int ident, <[ARG_TYPE]> <[ARG_NAME]>);
+		<<<FOR_BASE&ARGS{ignore:id}>>>
+		int set<[ARG_NAME]{first}>(int id, <[ARG_TYPE]> <[ARG_NAME]>)
 		<<</FOR_BASE&ARGS>>>
 		<<<FOR_BASE&ARGS>>>
 		int searchBy<[ARG_NAME]{first}>(<[ARG_TYPE]> <[ARG_NAME]>);
@@ -54,8 +49,8 @@ class <[BASENAME]>Index
 
 
 	private:
-		int nodes;
-		int next_ident;
+		int counter;
+		int id_base;
 		<[BASENAME]>* first;
 		<[BASENAME]>* last;
 

@@ -1,0 +1,307 @@
+/****************************************************************************
+* Created for: <[PROJECT]>
+* Dev line: <[DEVLINE]>
+* Creation date: <[CREATIONDATE]>
+* Last change: <[TODAY]>
+* Autogen: <[VERSION]>
+****************************************************************************/
+
+
+#include "<[BASENAME]>Index.h"
+
+
+//---------------------------------------------------------------------------
+
+<[BASENAME]>Index::<[BASENAME]>Index()
+{
+
+	this->counter = 0;
+	this->id_base = 0;
+	this->first = nullptr;
+	this->last = nullptr;
+
+}
+
+<[BASENAME]>Index::~<[BASENAME]>Index()
+{
+
+	this->purge();
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::createRegister(string tag=""){
+
+	<[BASENAME]>* pointer = new <[BASENAME]>();
+	pointer->setTag(tag);
+
+	if (this->counter == 0){
+
+		this->counter = 1;
+		this->first = pointer;
+		this->last = pointer;
+
+	}else{
+
+		this->counter++;
+		pointer->setId(this->counter-1);
+		this->last->setNext(pointer);
+
+	}
+	
+	pointer->setId(this->id_base);
+	this->id_base++;
+	this->last = pointer;
+
+	return pointer->getId();
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::searchAvailable(){
+
+	int result = -1;
+	int counter = 0;
+	bool found = false;
+	<[BASENAME]>* pointer;
+	
+	while((counter < this->counter) && (found == false)){
+	
+		pointer = this->getNode(counter);
+		if (pointer->getAvailable() == true){
+	
+			result = pointer->getId();
+			found = true;
+	
+		}
+	
+		counter++;
+	
+	}
+	
+	return result;
+	
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::freeNode(int id){
+
+	int result= 0;
+
+	result = this->setAvailable(id, true);
+
+    return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::freeList(){
+
+	<[BASENAME]>* pointer;
+	int result = 0;
+	
+	pointer = this->getNode(0);
+	
+	while(pointer != nullptr){
+	
+		if(pointer->getAvailable() == false){
+		
+			pointer->setAvailable(true);
+			pointer = pointer->next;
+			result++:
+		
+		}
+	
+	}
+	
+	return result;
+	
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::deleteNode(int id){
+
+	<[BASENAME]>* pointer;
+	<[BASENAME]>* previous;
+	int result = -1;
+	
+	pointer = this->getNode(id);
+	
+	if(pointer != nullptr){
+	
+		if(id == 0){
+		
+			this->first = pointer->next;
+		
+		}else{
+			
+			previous = this->getNode(id-1);
+			previous->next = pointer->next;
+		
+		}
+		
+		result = pointer->id;
+		delete(pointer);
+		this->counter--;
+	
+	}
+	
+	return result;
+	
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::deleteList(int id){
+
+	int result = -1;
+
+	this->freeList();
+	result = this->purge();
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::purgue(int id){
+
+	<[BASENAME]>* pointer;
+	<[BASENAME]>* next;
+	int result = 0;
+	
+	pointer = this->first;
+	
+	while(pointer != nullptr){
+
+		next = pointer->next;
+	
+		if(pointer->getAvailable()){
+		
+			this->deleteNode(pointer);
+			counter++;
+		
+		}
+		
+		pointer = next;
+	
+	}
+	
+	return counter;
+	
+
+}
+
+
+//---------------------------------------------------------------------------
+
+<[BASENAME]>* <[BASENAME]>Index::getNode(int id){
+
+	<[BASENAME]>* pointer;
+
+	pointer = this->getElementById(id);
+
+	return pointer;
+
+}
+
+
+<<<FOR_ARGS>>>
+
+<[ARG_TYPE]> <[BASENAME]>Index::get<[ARG_NAME]{first}>(int id){
+
+	<[ARG_TYPE]> result = <[ARG_INIT]>;
+	<[BASENAME]>* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->get<[ARG_NAME]{first}>();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::set<[ARG_NAME]{first}>(int id, <[ARG_TYPE]> <[ARG_NAME]>){
+
+	 <[BASENAME]>* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->set<[ARG_NAME]{first}>(<[ARG_NAME]>);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int <[BASENAME]>Index::searchBy<[ARG_NAME]{first}>(<[ARG_TYPE]> <[ARG_NAME]>){
+
+	int result = -1;
+	bool found = false;
+	<[BASENAME]>* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (<[ARG_NAME]> == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+<<</FOR_ARGS>>>
+
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+

@@ -1,0 +1,5 @@
+ARG="string,name"
+ARG="string,type"
+ARG="string,s_value"
+ARG="int,i_value"
+ARG="double,d_value"
