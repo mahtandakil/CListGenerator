@@ -4,7 +4,7 @@
 # Created for: SDLApi v1
 # Dev line: AGE v2
 # Creation day: 05/08/2015
-# Last change: 27/01/2016
+# Last change: 10/02/2016
 #
 # Reserved words: 
 #***************************************************************************/
@@ -30,6 +30,9 @@ if __name__ == "__main__":
 	obj = app.engine.Engine()
 	obj.process(source)
 	
+	#A pause to check that everything it's ok
+	print 
+	raw_input(">")
 
 
 #############################################################################

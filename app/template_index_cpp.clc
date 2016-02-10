@@ -276,6 +276,15 @@ int <[BASENAME]>Index::searchAvailable(int limit){
 
 //---------------------------------------------------------------------------
 
+<[BASENAME]>* <[BASENAME]>Index::getFirst(){
+
+	return this->first;
+
+}
+
+
+//---------------------------------------------------------------------------
+
 <[BASENAME]>* <[BASENAME]>Index::getNode(int ident){
 
 	<[BASENAME]>* result = nullptr;

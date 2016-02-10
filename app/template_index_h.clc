@@ -32,12 +32,13 @@ class <[BASENAME]>Index
 		int freeList();
 		int deleteNode(int ident);
 		int deleteList();
-		int setValues(int ident, <[FULLLIST_ARGS]>);
-		int purge();
+		<[BASENAME]>* getFirst();
 		<[BASENAME]>* getNode(int id);
 		int getPrevious(int ident);
 		int printNodes();
+		int purge();
 		int searchAvailable(int limit=0);
+		int setValues(int ident, <[FULLLIST_ARGS]>);
 		<<<FOR_BASE&ARGS>>>
 		<[ARG_TYPE]> get<[ARG_NAME]{first}>(int id);
 		<<</FOR_BASE&ARGS>>>
