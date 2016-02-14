@@ -4,7 +4,7 @@
 # Created for: AGE v2
 # Dev line: AGE v2
 # Creation day: 11/01/2016
-# Last change: 05/02/2016
+# Last change: 14/02/2016
 #***************************************************************************/
 
 
@@ -46,9 +46,9 @@ class Engine():
 		self.FORARGSBASECLOSE = "<<</FOR_BASE&ARGS"
 		self.ER_ARG1 = ""
 		self.ER_ARG2 = ""
-		self.base_values = [["ARG", "int", "ident"],["ARG", "string", "tag"],["ARG", "bool", "available"],["SPECIAL", "POINTER", "next"]]
+		self.base_values = [["ARG", "int", "ident", None],["ARG", "string", "tag", None],["ARG", "bool", "available", None],[None, None, "next", "NODEPOINTER"]]
 		
-		self.engine_version = "1.1.0"
+		self.engine_version = "1.1.2a"
 		
 		
 #-----------------------------------------------------------------------
@@ -96,8 +96,8 @@ class Engine():
 		clear()
 		for file_name in self.file_list:
 			self.processCLD(file_name, self.cls_values)	
-
-
+	
+	
 #-----------------------------------------------------------------------
 
 	#This functions loads the options contained in a solution's file. The 
@@ -129,7 +129,7 @@ class Engine():
 				result_dic[search1.group(1)] = search1.group(2)
 			
 			elif search1 and search_style == 1:
-				result_list.append([search1.group(1), search1.group(2), search1.group(3)])
+				result_list.append([search1.group(1), search1.group(2), search1.group(3), None])
 
 		f.close()
 		
@@ -393,21 +393,19 @@ class Engine():
 			comm_values = self.cld_values
 			if token[4] == "forargsbase":
 				comm_values = self.base_values + self.cld_values
-				
+
 			for arg in comm_values:
 				
-				if arg[0] == "SPECIAL":
-					
-					if arg[1] == "POINTER":
-						
-						arg[0] = "ARG"
-						arg[1] = self.cld_base_name + "*"						
-
+				if arg[3] == "NODEPOINTER":
+											
+					arg[0] = "ARG"
+					arg[1] = self.cld_base_name + "*"						
+		
 			lines = code[token[2]:token[3]-1]
 			new_lines = []
 			
 			for arg in comm_values:
-	
+				
 				if ignores.count(arg[2]) == 0:
 	
 					for line in lines:
@@ -425,7 +423,7 @@ class Engine():
 							new_lines.append(new_line)				
 					
 			new_code.append(new_lines)
-
+			
 		count = 0
 		diff = 0
 		init_len = len(code)
