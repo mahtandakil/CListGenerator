@@ -4,7 +4,7 @@
 # Created for: AGE v2
 # Dev line: AGE v2
 # Creation day: 11/01/2016
-# Last change: 14/02/2016
+# Last change: 15/02/2016
 #***************************************************************************/
 
 
@@ -48,7 +48,7 @@ class Engine():
 		self.ER_ARG2 = ""
 		self.base_values = [["ARG", "int", "ident", None],["ARG", "string", "tag", None],["ARG", "bool", "available", None],[None, None, "next", "NODEPOINTER"]]
 		
-		self.engine_version = "1.1.2a"
+		self.engine_version = "1.1.2b"
 		
 		
 #-----------------------------------------------------------------------
@@ -488,6 +488,12 @@ class Engine():
 				com_res = "-1.0"
 			elif arg[1] == "string":
 				com_res = "\"\""
+			elif arg[1] == "Uint8":
+				com_res = "0"
+			elif arg[1] == "Uint16":
+				com_res = "0"
+			elif arg[1] == "Uint32":
+				com_res = "0"
 			else:
 				com_res = "nullptr"
 			changed = True
