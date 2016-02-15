@@ -372,7 +372,7 @@ int <[BASENAME]>Index::printNodes(){
 
 	pointer = this->getNode(ident);
 
-	if ((pointer == nullptr) || (ident < 0) || (ident >= this->nodes)){
+	if ((pointer == nullptr) || (ident < 0)){
 		result = <[ARG_INIT]>;
 
 
