@@ -2,8 +2,8 @@
 * Created for: DevSecPac
 * Dev line: V2 LINE
 * Creation date: 11/01/2016
-* Last change: 02/02/16
-* Autogen: 1.1.0
+* Last change: 14/02/16
+* Autogen: 1.1.3
 ****************************************************************************/
 
 
@@ -592,6 +592,2502 @@ int LocalIndex::searchByD_value(double d_value){
 		while (not ((pointer == nullptr) or (found))){
 
 			if (d_value == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::getIdent(int id){
+
+	int result = -1;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getIdent();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setIdent(int id, int ident){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setIdent(ident);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByIdent(int ident){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (ident == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+string LocalIndex::getTag(int id){
+
+	string result = "";
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getTag();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setTag(int id, string tag){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setTag(tag);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByTag(string tag){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (tag == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+bool LocalIndex::getAvailable(int id){
+
+	bool result = false;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getAvailable();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setAvailable(int id, bool available){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setAvailable(available);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByAvailable(bool available){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (available == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+Local* LocalIndex::getNext(int id){
+
+	Local* result = nullptr;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getNext();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setNext(int id, Local* next){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setNext(next);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByNext(Local* next){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (next == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::getIdent(int id){
+
+	int result = -1;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getIdent();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setIdent(int id, int ident){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setIdent(ident);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByIdent(int ident){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (ident == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+string LocalIndex::getTag(int id){
+
+	string result = "";
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getTag();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setTag(int id, string tag){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setTag(tag);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByTag(string tag){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (tag == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+bool LocalIndex::getAvailable(int id){
+
+	bool result = false;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getAvailable();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setAvailable(int id, bool available){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setAvailable(available);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByAvailable(bool available){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (available == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+Local* LocalIndex::getNext(int id){
+
+	Local* result = nullptr;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getNext();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setNext(int id, Local* next){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setNext(next);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByNext(Local* next){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (next == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::getIdent(int id){
+
+	int result = -1;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getIdent();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setIdent(int id, int ident){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setIdent(ident);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByIdent(int ident){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (ident == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+string LocalIndex::getTag(int id){
+
+	string result = "";
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getTag();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setTag(int id, string tag){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setTag(tag);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByTag(string tag){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (tag == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+bool LocalIndex::getAvailable(int id){
+
+	bool result = false;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getAvailable();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setAvailable(int id, bool available){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setAvailable(available);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByAvailable(bool available){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (available == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+Local* LocalIndex::getNext(int id){
+
+	Local* result = nullptr;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getNext();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setNext(int id, Local* next){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setNext(next);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByNext(Local* next){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (next == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::getIdent(int id){
+
+	int result = -1;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getIdent();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setIdent(int id, int ident){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setIdent(ident);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByIdent(int ident){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (ident == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+string LocalIndex::getTag(int id){
+
+	string result = "";
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getTag();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setTag(int id, string tag){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setTag(tag);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByTag(string tag){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (tag == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+bool LocalIndex::getAvailable(int id){
+
+	bool result = false;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getAvailable();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setAvailable(int id, bool available){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setAvailable(available);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByAvailable(bool available){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (available == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+Local* LocalIndex::getNext(int id){
+
+	Local* result = nullptr;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getNext();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setNext(int id, Local* next){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setNext(next);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByNext(Local* next){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (next == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::getIdent(int id){
+
+	int result = -1;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getIdent();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setIdent(int id, int ident){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setIdent(ident);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByIdent(int ident){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (ident == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+string LocalIndex::getTag(int id){
+
+	string result = "";
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getTag();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setTag(int id, string tag){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setTag(tag);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByTag(string tag){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (tag == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+bool LocalIndex::getAvailable(int id){
+
+	bool result = false;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getAvailable();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setAvailable(int id, bool available){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setAvailable(available);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByAvailable(bool available){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (available == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+Local* LocalIndex::getNext(int id){
+
+	Local* result = nullptr;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getNext();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setNext(int id, Local* next){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setNext(next);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByNext(Local* next){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (next == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::getIdent(int id){
+
+	int result = -1;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getIdent();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setIdent(int id, int ident){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setIdent(ident);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByIdent(int ident){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (ident == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+string LocalIndex::getTag(int id){
+
+	string result = "";
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getTag();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setTag(int id, string tag){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setTag(tag);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByTag(string tag){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (tag == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+bool LocalIndex::getAvailable(int id){
+
+	bool result = false;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getAvailable();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setAvailable(int id, bool available){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setAvailable(available);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByAvailable(bool available){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (available == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+Local* LocalIndex::getNext(int id){
+
+	Local* result = nullptr;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getNext();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setNext(int id, Local* next){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setNext(next);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByNext(Local* next){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (next == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::getIdent(int id){
+
+	int result = -1;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getIdent();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setIdent(int id, int ident){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setIdent(ident);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByIdent(int ident){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (ident == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+string LocalIndex::getTag(int id){
+
+	string result = "";
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getTag();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setTag(int id, string tag){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setTag(tag);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByTag(string tag){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (tag == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+bool LocalIndex::getAvailable(int id){
+
+	bool result = false;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getAvailable();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setAvailable(int id, bool available){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setAvailable(available);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByAvailable(bool available){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (available == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+Local* LocalIndex::getNext(int id){
+
+	Local* result = nullptr;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getNext();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setNext(int id, Local* next){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setNext(next);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByNext(Local* next){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (next == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::getIdent(int id){
+
+	int result = -1;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getIdent();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setIdent(int id, int ident){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setIdent(ident);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByIdent(int ident){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (ident == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+string LocalIndex::getTag(int id){
+
+	string result = "";
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getTag();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setTag(int id, string tag){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setTag(tag);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByTag(string tag){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (tag == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+bool LocalIndex::getAvailable(int id){
+
+	bool result = false;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getAvailable();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setAvailable(int id, bool available){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setAvailable(available);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByAvailable(bool available){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (available == pointer->getS_value()){
+
+				result = pointer->getId();
+				found = true;
+
+			}
+
+			pointer = pointer->getNext();
+
+		}
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+Local* LocalIndex::getNext(int id){
+
+	Local* result = nullptr;
+	Local* pointer;
+
+	pointer = this->getNode(id);
+
+	if ((pointer == nullptr) or (id < 0) or (id >= this->counter)){
+		result = "";
+
+	}else{
+		result = pointer->getNext();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::setNext(int id, Local* next){
+
+	 Local* pointer;
+	int result = -1;
+
+	pointer = this->getNode(id);
+
+	if (pointer != nullptr){
+
+		pointer->setNext(next);
+		result = pointer->getId();
+
+	}
+
+	return result;
+
+}
+
+
+//---------------------------------------------------------------------------
+
+int LocalIndex::searchByNext(Local* next){
+
+	int result = -1;
+	bool found = false;
+	Local* pointer;
+
+	if (this->counter == 0){
+		result = -1;
+
+	}else{
+
+		pointer = this->first;
+
+		while (not ((pointer == nullptr) or (found))){
+
+			if (next == pointer->getS_value()){
 
 				result = pointer->getId();
 				found = true;

@@ -7,7 +7,7 @@
 ****************************************************************************/
 
 
-#include "<[BASENAME]{capital}>.h"
+#include "<[BASENAME]>.h"
 
 
 #include <iostream>
