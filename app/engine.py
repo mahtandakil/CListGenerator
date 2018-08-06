@@ -4,7 +4,7 @@
 # Created for: AGE v2
 # Dev line: AGE v2
 # Creation day: 11/01/2016
-# Last change: 15/02/2016
+# Last change: 17/07/2018
 #***************************************************************************/
 
 
@@ -48,7 +48,7 @@ class Engine():
 		self.ER_ARG2 = ""
 		self.base_values = [["ARG", "int", "ident", None],["ARG", "string", "tag", None],["ARG", "bool", "available", None],[None, None, "next", "NODEPOINTER"]]
 		
-		self.engine_version = "1.1.2b"
+		self.engine_version = "1.1.2e"
 		
 		
 #-----------------------------------------------------------------------

@@ -364,6 +364,15 @@ int <[BASENAME]>Index::printNodes(){
 
 //---------------------------------------------------------------------------
 
+int <[BASENAME]>Index::getNodes(){
+
+	return this->nodes;
+
+}
+
+
+//---------------------------------------------------------------------------
+
 <<<FOR_BASE&ARGS>>>
 <[ARG_TYPE]> <[BASENAME]>Index::get<[ARG_NAME]{first}>(int ident){
 

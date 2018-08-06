@@ -36,6 +36,7 @@ class <[BASENAME]>Index
 		<[BASENAME]>* getNode(int id);
 		int getPrevious(int ident);
 		int printNodes();
+		int getNodes();
 		int purge();
 		int searchAvailable(int limit=0);
 		int setValues(int ident, <[FULLLIST_ARGS]>);
